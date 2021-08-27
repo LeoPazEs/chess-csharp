@@ -49,7 +49,7 @@
 
         public void minusMovimentos()
         {
-            qteMovimentos++;
+            qteMovimentos--;
         }
 
         public abstract bool[,] movimentosPossiveis();
