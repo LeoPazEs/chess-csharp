@@ -20,12 +20,9 @@ namespace xadrez
             return "" + coluna + linha;
         }
 
-        public Posicao toPos(Tabuleiro tab)
+        public Posicao toPosicao()
         {
-            Posicao p =  new Posicao(8 - linha, coluna - 'a');
-            tab.validarPosicao(p);
-            return p;
-
+            return new Posicao(8 - linha, coluna - 'a');
         }
     }
 }

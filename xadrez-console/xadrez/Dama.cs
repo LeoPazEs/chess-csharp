@@ -15,6 +15,8 @@ namespace xadrez
             return "D";
         }
 
+       
+
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];

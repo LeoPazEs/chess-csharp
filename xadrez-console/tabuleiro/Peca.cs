@@ -2,23 +2,39 @@
 {
     abstract class Peca
     {
-        public Posicao posicao { get; set; } 
-        public Cor cor { get; protected set; } 
-        public int qteMovimentos { get; protected set; } 
-        public Tabuleiro tab { get; protected set; } 
 
+        public Posicao posicao { get; set; }
+        public Cor cor { get; protected set; }
+        public int qteMovimentos { get; protected set; }
+        public Tabuleiro tab { get; protected set; }
+
+        public bool mvCheck(Posicao pos)
+        {
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
+        }
         public Peca(Tabuleiro tab, Cor cor)
         {
-            posicao = null;
-            this.cor = cor;
+            this.posicao = null;
             this.tab = tab;
-            qteMovimentos = 0;
-        } 
+            this.cor = cor;
+            this.qteMovimentos = 0;
+        }
 
-        public bool mvPossiveis()
+        public void incrementarQteMovimentos()
         {
-            bool[,] mat = movimentosPossiveis(); 
-            for (int i = 0; i<tab.linhas; i++)
+            qteMovimentos++;
+        }
+
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
+        }
+
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = movimentosPossiveis();
+            for (int i = 0; i < tab.linhas; i++)
             {
                 for (int j = 0; j < tab.colunas; j++)
                 {
@@ -31,27 +47,12 @@
             return false;
         }
 
-        public bool mvCheck(Posicao pos)
-        {
-            Peca p = tab.peca(pos);
-            return p == null || p.cor != cor;
-        }
-
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos)
         {
             return movimentosPossiveis()[pos.linha, pos.coluna];
-        }
-
-        public void plusMovimentos()
-        {
-            qteMovimentos++;
-        }
-
-        public void minusMovimentos()
-        {
-            qteMovimentos--;
         }
 
         public abstract bool[,] movimentosPossiveis();
     }
 }
+

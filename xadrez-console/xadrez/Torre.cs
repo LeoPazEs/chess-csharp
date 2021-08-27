@@ -13,7 +13,6 @@ namespace xadrez
             return "T";
         }
 
-        
 
         public override bool[,] movimentosPossiveis()
         {
